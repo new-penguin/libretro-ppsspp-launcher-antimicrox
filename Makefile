@@ -29,7 +29,7 @@ else ifneq ($(findstring MINGW,$(shell uname -a)),)
 	system_platform = win
 endif
 
-TARGET_NAME := rpcs3_launcher
+TARGET_NAME := ppsspp_launcher
 LIBM		= -lm
 
 ifeq ($(ARCHFLAGS),)
@@ -111,7 +111,7 @@ else
    CFLAGS += -O3
 endif
 
-OBJECTS := libretro-rpcs3-launcher.o
+OBJECTS := libretro-ppsspp-launcher.o
 CFLAGS += -Wall -pedantic $(fpic)
 
 ifneq (,$(findstring qnx,$(platform)))
