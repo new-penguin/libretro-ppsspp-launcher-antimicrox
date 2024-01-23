@@ -43,7 +43,7 @@ void retro_set_controller_port_device(unsigned port, unsigned device)
 void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
-   info->library_name     = "RPCS3 Launcher";
+   info->library_name     = "PPSSPP Launcher";
    info->library_version  = "1.0";
    info->need_fullpath    = true;
    info->valid_extensions = "bin|iso|img|sfb|sfo|dat|bup|pkg|dump|chd";
@@ -121,7 +121,7 @@ void retro_reset(void)
 /**
  * libretro callback; Called every game tick.
  *
- * Once the core has run, we will attempt to exit, since rpcs3 is done.
+ * Once the core has run, we will attempt to exit, since ppsspp is done.
  */
 void retro_run(void)
 {
@@ -129,7 +129,7 @@ void retro_run(void)
    unsigned stride = 320;
    video_cb(frame_buf, 320, 240, stride << 2);
 
-   // Shutdown the environment now that rpcs3 has loaded and quit.
+   // Shutdown the environment now that ppsspp has loaded and quit.
    environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, NULL);
 }
 
@@ -138,45 +138,45 @@ void retro_run(void)
  */
 bool retro_load_game(const struct retro_game_info *info)
 {
-   // Launch without the gui if available (rpcs3).
-   char command[512] = "~/.config/retroarch/system/antimicrox.AppImage --tray || flatpak run io.github.antimicrox.antimicrox --tray || antimicrox --tray & rpcs3 --fullscreen --no-gui";
+   // Launch without the gui if available (ppsspp).
+   char command[512] = "~/.config/retroarch/system/antimicrox.AppImage --tray || flatpak run io.github.antimicrox.antimicrox --tray || antimicrox --tray & PPSSPPSDL  --fullscreen --pause-menu-exit";
 
    // Check if there is content to load.
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
       sprintf(command, "%s \"%s\"", command, info->path);
    }
 
-   // Check if running rpcs3 works.
+   // Check if running ppsspp works.
    if (system(command) == 0) {
-      printf("libretro-rpcs3-launcher: Completed RPCS3\n");
+      printf("libretro-ppsspp-launcher: Completed PPSSPP\n");
       return true;
    }
 
    // Flatpak
-   printf("libretro-rpcs3-launcher: RPCS3 not found. Attempting Flatpak...\n");
-   strcpy(command, "flatpak run net.rpcs3.RPCS3 --fullscreen --no-gui");
+   printf("libretro-ppsspp-launcher: PPSSPP not found. Attempting Flatpak...\n");
+   strcpy(command, "flatpak run org.ppsspp.PPSSPP  --fullscreen --pause-menu-exit");
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
       // Execute with --batch.
       sprintf(command, "%s \"%s\"", command, info->path);
    }
    if (system(command) == 0) {
-      printf("libretro-rpcs3-launcher: Finished running RPCS3 through Flatpak.\n");
+      printf("libretro-ppsspp-launcher: Finished running PPSSPP through Flatpak.\n");
       return true;
    }
 
    // AppImage
-   printf("libretro-rpcs3-launcher: RPCS3 not found. Attempting AppImage...\n");
-   strcpy(command, "~/.config/retroarch/system/rpcs3.AppImage --fullscreen --no-gui");
+   printf("libretro-ppsspp-launcher: PPSSPP not found. Attempting AppImage...\n");
+   strcpy(command, "~/.config/retroarch/system/PPSSPP.AppImage --fullscreen --pause-menu-exit");
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
       // Execute with --batch.
       sprintf(command, "%s \"%s\"", command, info->path);
    }
    if (system(command) == 0) {
-      printf("libretro-rpcs3-launcher: Finished running RPCS3 through AppImage.\n");
+      printf("libretro-ppsspp-launcher: Finished running PPSSPP through AppImage.\n");
       return true;
    }
 
-   printf("libretro-rpcs3-launcher: Failed running RPCS3. Install it and try again.\n");
+   printf("libretro-ppsspp-launcher: Failed running PPSSPP. Install it and try again.\n");
    return false;
 }
 
