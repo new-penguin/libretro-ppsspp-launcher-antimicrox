@@ -3,7 +3,7 @@
 ![ppsspp](https://github.com/new-penguin/libretro-ppsspp-launcher-antimicrox/assets/139792946/30473e06-024e-4810-9371-6d08755e2864)
 
 
-Based on [libretro-dolphin-launcher](https://github.com/RobLoach/libretro-dolphin-launcher) and [libretro-PCSX2-launcher](https://github.com/eduardomozart/libretro-pcsx2-launcher). 
+Based on [libretro-dolphin-launcher](https://github.com/RobLoach/libretro-dolphin-launcher). 
 
 Launch Sony Playstation Portable games using [PPSSPP](https://www.ppsspp.org) directly from [RetroArch](http://www.libretro.com/) with full controller support using [antimicrox](https://github.com/AntiMicroX/antimicrox/).
 
