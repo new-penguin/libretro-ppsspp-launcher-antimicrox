@@ -1,6 +1,6 @@
 display_name = "Sony - PlayStation Portable (PPSSPP Launcher)"
 authors = "Team PPSSPP"
-supported_extensions = "bin|iso|img|sfb|sfo|dat|bup|pkg|dump|chd"
+supported_extensions = "bin|iso|img|sfb|sfo|dat|bup|pkg|dump|chd|cso"
 corename = "PPSSPP Launcher"
 manufacturer = "Sony"
 categories = "Emulator"
